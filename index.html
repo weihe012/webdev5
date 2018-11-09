@@ -43,24 +43,24 @@
     <div id="map"></div>
 
     <script>
-        // add map
+        // add map and setting view to MN
         const map = L.map('map', {
-          center: [45.52, -122.667],
-          zoom: 3
+          center: [45.52, -93.667],
+          zoom:6
         });
         // add basemap
         const esriStreets = L.esri.basemapLayer('Gray').addTo(map);
 
         // add hosted feature layer
-        const earthquakesLayer = L.esri.featureLayer({url: 'https://services.arcgis.com/8df8p0NlLFEShl0r/arcgis/rest/services/NaturalDisasters_Earthquakes/FeatureServer/0'}).addTo(map);
+        const childcareLayer = L.esri.featureLayer({url: 'https://services.arcgis.com/8df8p0NlLFEShl0r/arcgis/rest/services/Family_and_Child_Care_in_Minnesota/FeatureServer/1?token=EXb6jwR9fc-BB0vnFQNKUO6LTWUQ4eeAlXWUGLUqACpsGpc-VELaINCnlE47BXzkD8sOYJ8Ni_-UrIJuv4uQSf3z9zljwMXPDtbBSZUP6iujHeDkJxLXHoEeNRaunV-AtplnVTjdBGWRatUh-QkdCBzUAH6kkAhKm4ngDVnhGZopAmQdgzOwJZNInBG80dhUwSyQ_iaPicp2c0enW1WlU3gmZUcmcGsI9PjZ-ZDN-cwcOVRW9wtHThOY4Y_caYge'}).addTo(map);
 
-        // set up popup for earthquakes layer
-        earthquakesLayer.bindPopup(function(evt) {
+        // set up popup for childcare layer
+        childcareLayer.bindPopup(function(evt) {
             return L.Util.template(
               '<table>'+
-                '<tr><td>LOCATION:</td><td>{LOCATION}</td></tr>'+
-                '<tr><td>YEAR:</td><td>{YEAR}</td></tr>'+
-                '<tr><td>MAGNITUDE:</td><td>{MAGNITUDE}</td></tr>'+
+                '<tr><td>License Type:</td><td>{License_Type}</td></tr>'+
+                '<tr><td>Name of Program:</td><td>{Name_of_Program}</td></tr>'+
+                '<tr><td>City:</td><td>{City}</td></tr>'+
               '</table>',
               evt.feature.properties);
         });
